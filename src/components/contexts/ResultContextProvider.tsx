@@ -14,9 +14,10 @@ export const ResultContextProvider = ({ children }: ResultContextProviderProps) 
     const [results, setResults] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [searchTerm, setSearchTerm] = useState();
+    const [page, setPage] = useState(1);
 
 
-    const getResults = async (searchValue:string, type:"image"|"video"|"text"="text", page:number=1) => {
+    const getResults = async (searchValue:string, type:"image"|"video"|"text"="text") => {
 
         let data = {};
         
@@ -37,7 +38,7 @@ export const ResultContextProvider = ({ children }: ResultContextProviderProps) 
     }
 
     return (
-        <ResultContext.Provider value={{results, getResults, isLoading, searchTerm, setSearchTerm}}>
+        <ResultContext.Provider value={{results, getResults, isLoading, searchTerm, setSearchTerm, setPage, page}}>
             {children}
         </ResultContext.Provider>
     )
