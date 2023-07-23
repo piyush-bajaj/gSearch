@@ -23,3 +23,4 @@ This app is provides a simple search bar, which uses the Google Search API under
 - TypeScript.
 - .env files.
 - Netlify CI/CD.
+- Custom Google Search Engine.
