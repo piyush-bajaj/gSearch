@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useResultContext } from './contexts/ResultContextProvider'
 import { Loading } from './Loading';
 import { useLocation } from 'react-router-dom';
+import { Pagination } from './Pagination';
 
 type searchResult = {
     link: string,
@@ -13,7 +14,7 @@ type searchResult = {
 }
 export const Results = () => {
 
-    const {results, getResults, isLoading, searchTerm} = useResultContext();
+    const {results, getResults, isLoading, searchTerm, page, setPage} = useResultContext();
     const location = useLocation();
 
     useEffect(() => {
@@ -21,7 +22,11 @@ export const Results = () => {
             getResults(searchTerm, "image")
         else
             getResults(searchTerm)
-    }, [searchTerm, location.pathname])
+    }, [searchTerm, location.pathname, page])
+
+    useEffect(() => {
+        setPage(1)
+    },[location.pathname])
 
     if(isLoading)
         return <Loading />
@@ -46,7 +51,8 @@ export const Results = () => {
                                 </div>
                             ))
                         }
-                    </div>
+                    </div>                    
+                    {results?.items ? <Pagination /> : <></>}
                 </>
             );
         case "/images":
@@ -62,6 +68,7 @@ export const Results = () => {
                             ))
                         }
                     </div>
+                    {results?.items ? <Pagination /> : <></>}
                 </>
             )
     

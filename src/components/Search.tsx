@@ -5,12 +5,13 @@ import { useDebounce } from 'use-debounce';
 
 export const Search = () => {
 
-    const {setSearchTerm} = useResultContext();
+    const {setSearchTerm, setPage} = useResultContext();
     const [text, setText] = useState('');
     const [debounceValue] = useDebounce(text, 1000);
 
     useEffect(() => {
         setSearchTerm(debounceValue)
+        setPage(1)
       }, [debounceValue]);
 
   return (
