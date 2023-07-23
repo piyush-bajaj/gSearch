@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useResultContext } from './contexts/ResultContextProvider'
 import { Loading } from './Loading';
 import { useLocation } from 'react-router-dom';
-import ErrorPage from '../ErrorPage';
 
 type searchResult = {
     link: string,
